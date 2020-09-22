@@ -176,9 +176,9 @@ cumh2h <- function(d, h2h){
       g$away <- rollsumr(g$away, k=8, fill=NA)
       g$draw <- rollsumr(g$draw, k=8, fill=NA)
       #g$d.FTHG <- cumsum(g$d.FTHG)
-      g$d.FTHG <- rollsumr(g$d.FTHG, k=4, fill=NA)
+      g$d.FTHG <- rollsumr(g$d.FTHG, k=2, fill=NA)
       #g$d.FTAG <- cumsum(g$d.FTAG)
-      g$d.FTAG <- rollsumr(g$d.FTAG, k=4, fill=NA)
+      g$d.FTAG <- rollsumr(g$d.FTAG, k=2, fill=NA)
       len <- dim(g)[1]
       if(len == 0){
       } else if (len == 1){
@@ -207,8 +207,8 @@ cumh2h <- function(d, h2h){
   df$A <- round(df$A/8, 4)
   df$D <- round(df$D/8, 4)
   
-  #df$HGH2H <- round(df$HGH2H/4, 4)
-  #df$AGH2H <- round(df$AGH2H/4, 4)
+  df$HGH2H <- round(df$HGH2H/4, 4)
+  df$AGH2H <- round(df$AGH2H/4, 4)
   
   df$H[is.na(df$H)] <- 0.3333
   df$A[is.na(df$A)] <- 0.3333
@@ -290,15 +290,15 @@ cumstats1 <- function(d, st){
     
     p <- subset(st, team == t)
     
-    p$GP <- rollsumr(as.numeric(p$GP), k=4, fill=NA)
-    p$HGGS <- rollsumr(as.numeric(p$HGGS), k=4, fill=NA)
-    p$HGGC <- rollsumr(as.numeric(p$HGGC), k=4, fill=NA)
-    p$HGW <- rollsumr(as.numeric(p$HGW), k=4, fill=NA)
-    p$HGD <- rollsumr(as.numeric(p$HGD), k=4, fill=NA)
-    p$AGGS <- rollsumr(as.numeric(p$AGGS), k=4, fill=NA)
-    p$AGGC <- rollsumr(as.numeric(p$AGGC), k=4, fill=NA)
-    p$AGW <- rollsumr(as.numeric(p$AGW), k=4, fill=NA)
-    p$AGD <- rollsumr(as.numeric(p$AGD), k=4, fill=NA)
+    p$GP <- rollsumr(as.numeric(p$GP), k=2, fill=NA)
+    p$HGGS <- rollsumr(as.numeric(p$HGGS), k=2, fill=NA)
+    p$HGGC <- rollsumr(as.numeric(p$HGGC), k=2, fill=NA)
+    p$HGW <- rollsumr(as.numeric(p$HGW), k=2, fill=NA)
+    p$HGD <- rollsumr(as.numeric(p$HGD), k=2, fill=NA)
+    p$AGGS <- rollsumr(as.numeric(p$AGGS), k=2, fill=NA)
+    p$AGGC <- rollsumr(as.numeric(p$AGGC), k=2, fill=NA)
+    p$AGW <- rollsumr(as.numeric(p$AGW), k=2, fill=NA)
+    p$AGD <- rollsumr(as.numeric(p$AGD), k=2, fill=NA)
     
     
     df <- rbind(df, p)
