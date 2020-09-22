@@ -163,6 +163,8 @@ h2h <- function(d){
   a
 }
 
+
+# calculates head to head recored for each pair of teams taking into consideration performance of both the teams in previous 4/8 seasons
 cumh2h <- function(d, h2h){
   teams <- as.data.frame(table(d$HomeTeam))$Var1
   
@@ -170,11 +172,13 @@ cumh2h <- function(d, h2h){
   for(t1 in teams){
     for(t2 in teams){
       g <- subset(h2h, d.HomeTeam==t1 & d.AwayTeam==t2)
-      g$home <- cumsum(g$home)
-      g$away <- cumsum(g$away)
-      g$draw <- cumsum(g$draw)
-      g$d.FTHG <- cumsum(g$d.FTHG)
-      g$d.FTAG <- cumsum(g$d.FTAG)
+      g$home <- rollsumr(g$home, k=8, fill=NA)
+      g$away <- rollsumr(g$away, k=8, fill=NA)
+      g$draw <- rollsumr(g$draw, k=8, fill=NA)
+      #g$d.FTHG <- cumsum(g$d.FTHG)
+      g$d.FTHG <- rollsumr(g$d.FTHG, k=4, fill=NA)
+      #g$d.FTAG <- cumsum(g$d.FTAG)
+      g$d.FTAG <- rollsumr(g$d.FTAG, k=4, fill=NA)
       len <- dim(g)[1]
       if(len == 0){
       } else if (len == 1){
@@ -198,12 +202,23 @@ cumh2h <- function(d, h2h){
   }
   
   colnames(df) <- c("season", "HomeTeam", "AwayTeam", "HGH2H", "AGH2H", "FTR", "H", "A", "D")
+  
+  df$H <- round(df$H/8, 4)
+  df$A <- round(df$A/8, 4)
+  df$D <- round(df$D/8, 4)
+  
+  df$HGH2H <- round(df$HGH2H/4, 4)
+  df$AGH2H <- round(df$AGH2H/4, 4)
+  
+  df$H[is.na(df$H)] <- 0.3333
+  df$A[is.na(df$A)] <- 0.3333
+  df$D[is.na(df$D)] <- 0.3333
+  
+  df$HGH2H[is.na(df$HGH2H)] <- 1
+  df$AGH2H[is.na(df$AGH2H)] <- 1
+  
   df$T <- df$H + df$A + df$D
-  df$H <- round(df$H/df$T, 4)
-  df$A <- round(df$A/df$T, 4)
-  df$D <- round(df$D/df$T, 4)
-  df$HGH2H <- round(df$HGH2H/df$T, 4)
-  df$AGH2H <- round(df$AGH2H/df$T, 4)
+  
   df <- df %>% arrange(HomeTeam, AwayTeam, season)
   df
 }
