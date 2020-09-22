@@ -24,7 +24,6 @@ compareXGA <- function(pred, t){
   g <- g + geom_line(aes(game, Predicted.FTAG), col="blue")
   g <- g + ylab("Goals Conceded/Expected to concede")
   g
-<<<<<<< HEAD
 }
 
 summaryGoals <- function(pred){
@@ -49,6 +48,3 @@ summaryGoals <- function(pred){
   colnames(df) <- c("Team", "Goals Scored", "xG", "Goals Conceded", "xGA")
   df
 }
-=======
-}
->>>>>>> 645c5eb9d2b06f1e9beafdfcd1624fbdb7216056
