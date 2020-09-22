@@ -207,8 +207,8 @@ cumh2h <- function(d, h2h){
   df$A <- round(df$A/8, 4)
   df$D <- round(df$D/8, 4)
   
-  df$HGH2H <- round(df$HGH2H/4, 4)
-  df$AGH2H <- round(df$AGH2H/4, 4)
+  #df$HGH2H <- round(df$HGH2H/4, 4)
+  #df$AGH2H <- round(df$AGH2H/4, 4)
   
   df$H[is.na(df$H)] <- 0.3333
   df$A[is.na(df$A)] <- 0.3333
