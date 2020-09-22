@@ -1,0 +1,11 @@
+Every team will be given a rating based on their performance in defence and attack over last two season.
+
+inputs (both home and away)
+1. avg goals scored over last two season against "TYPE" opponents
+2. avg shots taken over last two season against "TYPE" opponents
+3. avg shots on target over last two season against "TYPE" opponents
+
+output 
+
+1. xG
+2. xGA

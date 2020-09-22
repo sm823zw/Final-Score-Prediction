@@ -14,10 +14,10 @@ shots <- function(d){
       
       x <- subset(d, season==s & AwayTeam==t)
       GP <- GP + length(x$AwayTeam[x$AwayTeam==t])
-      AGS <- sum(x$HS)
-      AGAS <- sum(x$AS)
-      AGST <- sum(x$HST)
-      AGAST <- sum(x$AST)
+      AGS <- sum(x$AS)
+      AGAS <- sum(x$HS)
+      AGST <- sum(x$AST)
+      AGAST <- sum(x$HST)
       
       df <- rbind(df, c(s, t, GP, HGS, HGAS, HGST, HGAST, AGS, AGAS, AGST, AGAST))
     }
@@ -54,10 +54,10 @@ cumulshotsAllSeason <- function(d){
       
       x <- subset(d, season==s & AwayTeam==t)
       AGP <- AGP + length(x$AwayTeam[x$AwayTeam==t])
-      AGS <- AGS + sum(x$HS)
-      AGAS <- AGAS + sum(x$AS)
-      AGST <- AGST + sum(x$HST)
-      AGAST <- AGAST + sum(x$AST)
+      AGS <- AGS + sum(x$AS)
+      AGAS <- AGAS + sum(x$HS)
+      AGST <- AGST + sum(x$AST)
+      AGAST <- AGAST + sum(x$HST)
       
       if(HGP==0 | AGP==0){
         df <- rbind(df, c(s, t, HGP, 1, 1, 0.3333, 0.3333, AGP, 1, 1, 0.3333, 0.3333))
@@ -117,7 +117,7 @@ shotsDataset <- function(d, st){
   df
 }
 
-# Takes cumulative sum of only the previous four seasons for each parameter
+# Takes cumulative sum of only the previous two seasons for each parameter
 cumulshots <- function(shots){
   
   teams <- as.data.frame(table(shots$team))$Var1
@@ -141,14 +141,15 @@ cumulshots <- function(shots){
   
   df[df==0] <- 1
   
-  df$HGS <- 2*round(df$HGS/df$GP, 4)
-  df$HGAS <- 2*round(df$HGAS/df$GP, 4)
-  df$HGST <- 2*round(df$HGST/df$GP, 4)
-  df$HGAST <- 2*round(df$HGAST/df$GP, 4)
-  df$AGS <- 2*round(df$AGS/df$GP, 4)
-  df$AGAS <- 2*round(df$AGAS/df$GP, 4)
-  df$AGST <- 2*round(df$AGST/df$GP, 4)
-  df$AGAST <- 2*round(df$AGAST/df$GP, 4)
+  #df$HGS <- 2*round(df$HGS/df$GP, 4)
+  #df$HGAS <- 2*round(df$HGAS/df$GP, 4)
+  #df$HGST <- 2*round(df$HGST/df$GP, 4)
+  #df$HGAST <- 2*round(df$HGAST/df$GP, 4)
+  #df$AGS <- 2*round(df$AGS/df$GP, 4)
+  #df$AGAS <- 2*round(df$AGAS/df$GP, 4)
+  #df$AGST <- 2*round(df$AGST/df$GP, 4)
+  #df$AGAST <- 2*round(df$AGAST/df$GP, 4)
   
+  df[is.na(df)] <- 1
   df
 }

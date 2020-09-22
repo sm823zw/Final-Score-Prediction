@@ -307,14 +307,15 @@ cumstats1 <- function(d, st){
   df[df==0] <- 1
   #df <- subset(df, df$GP!=0)
   
-  df$HGGS <- 2*round(df$HGGS/df$GP, 4)
-  df$HGGC <- 2*round(df$HGGC/df$GP, 4)
-  df$HGW <- 2*round(df$HGW/df$GP, 4)
-  df$HGD <- 2*round(df$HGD/df$GP, 4)
-  df$AGGS <- 2*round(df$AGGS/df$GP, 4)
-  df$AGGC <- 2*round(df$AGGC/df$GP, 4)
-  df$AGW <- 2*round(df$AGW/df$GP, 4)
-  df$AGD <- 2*round(df$AGD/df$GP, 4)
+  #df$HGGS <- 2*round(df$HGGS/df$GP, 4)
+  #df$HGGC <- 2*round(df$HGGC/df$GP, 4)
+  #df$HGW <- 2*round(df$HGW/df$GP, 4)
+  #df$HGD <- 2*round(df$HGD/df$GP, 4)
+  #df$AGGS <- 2*round(df$AGGS/df$GP, 4)
+  #df$AGGC <- 2*round(df$AGGC/df$GP, 4)
+  #df$AGW <- 2*round(df$AGW/df$GP, 4)
+  #df$AGD <- 2*round(df$AGD/df$GP, 4)
+  df[is.na(df)] <- 1
   
   df
 }
