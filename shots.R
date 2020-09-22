@@ -126,15 +126,15 @@ cumulshots <- function(shots){
   for(t in teams){
     d <- subset(shots, team == t)
 
-    d$GP <- rollsumr(as.numeric(d$GP), k=4, fill=NA)
-    d$HGS <- rollsumr(as.numeric(d$HGS), k=4, fill=NA)
-    d$HGAS <- rollsumr(as.numeric(d$HGAS), k=4, fill=NA)
-    d$HGST <- rollsumr(as.numeric(d$HGST), k=4, fill=NA)
-    d$HGAST <- rollsumr(as.numeric(d$HGAST), k=4, fill=NA)
-    d$AGS <- rollsumr(as.numeric(d$AGS), k=4, fill=NA)
-    d$AGAS <- rollsumr(as.numeric(d$AGAS), k=4, fill=NA)
-    d$AGST <- rollsumr(as.numeric(d$AGST), k=4, fill=NA)
-    d$AGAST <- rollsumr(as.numeric(d$AGAST), k=4, fill=NA)
+    d$GP <- rollsumr(as.numeric(d$GP), k=2, fill=NA)
+    d$HGS <- rollsumr(as.numeric(d$HGS), k=2, fill=NA)
+    d$HGAS <- rollsumr(as.numeric(d$HGAS), k=2, fill=NA)
+    d$HGST <- rollsumr(as.numeric(d$HGST), k=2, fill=NA)
+    d$HGAST <- rollsumr(as.numeric(d$HGAST), k=2, fill=NA)
+    d$AGS <- rollsumr(as.numeric(d$AGS), k=2, fill=NA)
+    d$AGAS <- rollsumr(as.numeric(d$AGAS), k=2, fill=NA)
+    d$AGST <- rollsumr(as.numeric(d$AGST), k=2, fill=NA)
+    d$AGAST <- rollsumr(as.numeric(d$AGAST), k=2, fill=NA)
     
     df <- rbind(df, d)
   }
